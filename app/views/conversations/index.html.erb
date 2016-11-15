@@ -1,0 +1,21 @@
+<div class="row col-md-8 col-md-offset-2">
+  <h1>Rooms:</h1>
+    <div class="well">
+      <ul>
+        <% conversations.each do |room| %>
+          <li>
+            <h3>
+              <% if room.password_digest %>
+                <%= form_tag conversation_private_path(room) do %>
+                  <%= text_field_tag :password, nil, placeholder: 'Password' %>
+                  <%= submit_tag "Join #{room.topic} (private)" %>
+                <% end %>
+              <% else %>
+                <%= link_to "Join #{room.topic}", room %>
+              <% end %>
+            </h3>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+</div>

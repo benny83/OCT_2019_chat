@@ -1,0 +1,22 @@
+<ul class="nav navbar-nav">
+  <% if user_signed_in? %>
+    <li>
+      <%= link_to "New Room", new_conversation_path %>
+    </li>
+    <li>
+      <%= link_to "Rooms", conversations_path %>
+    </li> 
+  <% end %>
+</ul>
+
+<ul class="nav navbar-nav navbar-right">
+  <% if user_signed_in? %>
+    <li><%= link_to current_user.email, '#' %></li>
+    <li>
+      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+    </li>
+  <% else %>
+    <li><%= link_to('Register', new_user_registration_path) %></li>
+    <li><%= link_to('Login', new_user_session_path) %></li>
+  <% end %>
+</ul>

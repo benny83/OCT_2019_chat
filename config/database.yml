@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: task2_dev
+  host: localhost
+
+production:
+  <<: *default
+  database: task2_prod
