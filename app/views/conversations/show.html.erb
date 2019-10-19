@@ -3,14 +3,4 @@
     <ul id="conversations-list" data-conversation="<%= @conversation.id %>">
       <%= render 'conversations/conversation', conversation: @conversation, user: current_user %>
     </ul>
-
-
-  <% if false %>
-    <div class="panel panel-default">
-      <div class="panel-body" id="messages" data-conversation=<%=@conversation.id%>>
-        <%#= render partial: 'messages/message', collection: @conversation.messages %>
-      </div>
-    </div>
-    <%#= render partial: 'messages/message_form', locals: {message: @message, conversation: @conversation}%>
-  <% end %>
 </div>

@@ -1,7 +1,10 @@
 # Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
 class ConversationChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "conversations-#{current_user.id}"
+    # binding.pry
+    if params[:conversation_id].present?
+      stream_from "conversations-#{params[:conversation_id]}"
+    end
     # stream_from 'messages'
   end
 
@@ -15,6 +18,7 @@ class ConversationChannel < ApplicationCable::Channel
   # end
 
   def speak(data)
+    # binding.pry
     message_params = data['message'].each_with_object({}) do |el, hash|
       hash[el.values.first] = el.values.last
     end

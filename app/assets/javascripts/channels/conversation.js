@@ -1,9 +1,9 @@
-App.conversation = App.cable.subscriptions.create("ConversationChannel", {
+var hardcode = new URL(document.location)
+
+App.conversation = App.cable.subscriptions.create({ channel: "ConversationChannel", conversation_id: hardcode.pathname.split('/')[2] }, {
   connected: function() {},
   disconnected: function() {},
   received: function(data) {
-    // debugger;
-
     var conversation = $('#conversations-list').find("[data-conversation-id='" + data['conversation_id'] + "']");
     conversation.find('.messages-list').find('ul').append(data['message']);
 
@@ -41,7 +41,8 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
   },
   speak: function(message) {
     return this.perform('speak', {
-      message: message
+      message: message,
+      conversation_id: message[0].value
     });
   }
 });

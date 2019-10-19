@@ -1,4 +1,8 @@
 class ConversationsController < ApplicationController
+  def index
+    @conversations = Conversation.all
+  end
+
   def new
     if request.referrer.split("/").last == "chatrooms"
       flash[:notice] = nil
@@ -15,9 +19,10 @@ class ConversationsController < ApplicationController
       end
     else
       respond_to do |format|
-        flash[:notice] = {error: ["a chatroom with this topic already exists"]}
-        format.html { redirect_to new_conversation_path }
-        format.js { render template: 'chatrooms/chatroom_error.js.erb'} 
+        flash[:error] = '123123'
+        format.html { redirect_to new_conversation_path, flash: {
+          error: 'A room with this topic already exists'
+        } }
       end
     end
   end

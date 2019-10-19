@@ -33,3 +33,11 @@ ul {
   padding: 10px;
   float: left;
 }
+
+.new_conversation {
+  display: flex;
+
+  input[type='submit'] {
+    margin-left: 30px;
+  }
+}

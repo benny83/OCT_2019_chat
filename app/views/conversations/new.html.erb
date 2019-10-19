@@ -1,18 +1,15 @@
 <div class="row col-md-8 col-md-offset-2">
-
-  <h1>Create a Conversation</h1>
+  <h1>New room</h1>
+    <%= render partial: 'layouts/flash_errors'%>
     <div class="well">
       <div class="chatroom-form">
         <%= form_for @conversation do |f| %>
           <div class="input-group">
-            <span class="input-group-addon">topic:</span>
+            <span class="input-group-addon">Topic:</span>
             <%= f.text_field :topic, class: "form-control"%>
           </div>
-          <%= f.submit class: "btn btn-primary", id: "create-chatroom" %>
+          <%= f.submit 'Create room', class: "btn btn-primary", id: "create-chatroom" %>
         <% end %>
       </div>
     </div>
-
-    <%#= render partial: 'layouts/flash_errors'%>
 </div>
-

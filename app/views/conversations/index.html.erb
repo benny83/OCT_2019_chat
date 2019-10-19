@@ -1,0 +1,10 @@
+<div class="row col-md-8 col-md-offset-2">
+  <h1>Rooms:</h1>
+    <div class="well">
+      <ul>
+        <% @conversations.each do |room| %>
+          <li><h3><%= link_to room.topic, room %></h3></li>
+        <% end %>
+      </ul>
+    </div>
+</div>

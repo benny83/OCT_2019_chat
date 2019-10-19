@@ -1,12 +1,5 @@
 <li>
   <div class="panel panel-default" data-conversation-id="<%= conversation.id %>">
-    <% if false %>
-      <div class="panel-heading">
-        <%= link_to "conversation.opposed_user(user).email", '', class: 'toggle-window' %>
-        <%= link_to "x", close_conversation_path(conversation), class: "btn btn-default btn-xs pull-right", remote: true, method: :post %>
-      </div>
-    <% end %>
-
     <div class="panel-body">
       <div class="messages-list">
         <ul>
@@ -16,8 +9,9 @@
       <form class="new_message">
         <input name="conversation_id" type="hidden" value="<%= conversation.id %>">
         <input name="user_id" type="hidden" value="<%= user.id %>">
-        <textarea name="body" class="form-control"></textarea>
+        <textarea name="body" class="form-control" id='chat_area'></textarea>
         <input type="submit" class="btn btn-success" value="Send">
+        <%= link_to 'Back to rooms', conversations_path, class: 'btn btn-warning' %>
       </form>
     </div>
   </div>

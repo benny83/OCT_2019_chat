@@ -1,9 +1,5 @@
-<% if flash.notice %>
+<% if flash[:error] %>
   <div class="alert alert-danger">
-      <% flash.notice.each do |type, messages|%>
-        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><%messages.each do |msg|%>
-          <%=type%> <%=msg%>
-        <%end%>
-      <%end%>
+    <%= flash[:error] %>
   </div>
-<%end%>
+<% end %>

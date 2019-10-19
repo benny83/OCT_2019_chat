@@ -1,6 +1,7 @@
 class Conversation < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :users, through: :messages
+  validates :topic, presence: true, uniqueness: true, case_sensitive: false
   # belongs_to :sender, foreign_key: :sender_id, class_name: User
   # belongs_to :recipient, foreign_key: :recipient_id, class_name: User
 
