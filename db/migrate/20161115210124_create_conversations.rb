@@ -3,6 +3,7 @@ class CreateConversations < ActiveRecord::Migration[5.0]
     create_table :conversations do |t|
       t.integer :recipient_id
       t.integer :sender_id
+      t.string :topic
 
       t.timestamps
     end

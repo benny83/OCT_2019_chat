@@ -1,0 +1,16 @@
+<% if false %>
+  <label for="message_your_message">Your message</label>:
+    <textarea class="form-control" data-textarea="message" name="message[content]" id="message_content">
+    </textarea>
+  <input type="submit" name="commit" value="send" class="btn btn-primary" data-send="message" data-disable-with="send" />
+
+
+
+  <form class="new_message">
+    <input name="conversation_id" type="hidden" value="<%= conversation.id %>">
+    <input name="user_id" type="hidden" value="<%= user.id %>">
+    <textarea name="body" class="form-control"></textarea>
+    <input type="submit" class="btn btn-success" value="Send">
+  </form>
+
+<% end %>

@@ -3,10 +3,18 @@ class MessageBroadcastJob < ApplicationJob
 
   def perform(message)
     sender = message.user
-    recipient = message.conversation.opposed_user(sender)
+    # recipient = message.conversation.opposed_user(sender)
 
     broadcast_to_sender(sender, message)
-    broadcast_to_recipient(recipient, message)
+
+    # broadcast_to_recipient(recipient, message)
+    # ActionCable.server.broadcast 'messages', { message: render_message(message), chatroom_id: message.chatroom_id }
+  
+
+    # ActionCable.server.broadcast 'messages', {
+    #   message: render_message(message, message.user),
+    #   conversation_id: message.chatroom_id
+    # }
   end
 
   private

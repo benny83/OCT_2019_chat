@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
-  root 'home#index'
-
   devise_for :users
 
-  resources :conversations, only: [:create] do
+  # resources :conversations, only: [:create] do
+  #   member do
+  #     post :close
+  #   end
+
+  #   resources :messages, only: [:create]
+  # end
+
+  resources :conversations do
     member do
       post :close
     end
 
     resources :messages, only: [:create]
   end
+
+  root 'home#index'
 end

@@ -2,11 +2,17 @@
 class ConversationChannel < ApplicationCable::Channel
   def subscribed
     stream_from "conversations-#{current_user.id}"
+    # stream_from 'messages'
   end
 
   def unsubscribed
     stop_all_streams
   end
+
+  # def receive(payload)
+  #   binding.pry
+  #   Message.create(user: current_user, chatroom_id: payload["chatroom_id"], content: payload["message"])
+  # end
 
   def speak(data)
     message_params = data['message'].each_with_object({}) do |el, hash|
@@ -14,5 +20,10 @@ class ConversationChannel < ApplicationCable::Channel
     end
 
     Message.create(message_params)
+
+    # ActionCable.server.broadcast(
+    #   "conversations-#{current_user.id}",
+    #   message: message_params
+    # )
   end
 end
