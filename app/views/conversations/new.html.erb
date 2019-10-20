@@ -1,9 +1,8 @@
 <div class="row col-md-8 col-md-offset-2">
   <h1>New room</h1>
-    <%= render partial: 'layouts/flash_errors'%>
     <div class="well">
       <div class="chatroom-form">
-        <%= form_for @conversation do |f| %>
+        <%= form_for conversation do |f| %>
           <div class="input-group">
             <span class="input-group-addon">Password (optional):</span>
             <%= f.text_field :password, class: "form-control" %>

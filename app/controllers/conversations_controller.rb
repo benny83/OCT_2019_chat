@@ -1,21 +1,20 @@
 class ConversationsController < ApplicationController
   def index
-    @conversations = Conversation.all
+    render :index, locals: { conversations: Conversation.all }
   end
 
   def new
-    if request.referrer.split("/").last == "chatrooms"
-      flash[:notice] = nil
-    end
-    @conversation = Conversation.new
+    render :new, locals: { conversation: Conversation.new }
   end
 
   def create
-    @conversation = Conversation.new(conversation_params)
-    @conversation.save(validate: false)
+    conversation = Conversation.new(conversation_params)
+    conversation.save(validate: false)
 
     respond_to do |format|
-      format.html { redirect_to conversation_path(@conversation) }
+      format.html { redirect_to conversations_path, flash: {
+        success: "Successful created #{conversation.topic}"
+      } }
       format.js
     end
   end
@@ -25,22 +24,17 @@ class ConversationsController < ApplicationController
     if conversation.authenticate(params[:password])
       render :show, locals: { conversation: conversation }
     else
-      redirect_to root_path
+      redirect_to conversations_path, flash: { error: "Invalid password, pes" }
     end
   end
 
   def show
     conversation = Conversation.find(params[:id])
     if conversation.password_digest && params[:password].blank?
-      redirect_to root_path
+      redirect_to conversations_path, flash: { error: "Private room, pes" }
     else
       render :show, locals: { conversation: conversation }
     end
-
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
   end
 
   private
