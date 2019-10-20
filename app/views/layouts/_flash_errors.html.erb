@@ -1,5 +1,6 @@
-<% if flash[:error] %>
+<%# REMOVE %>
+<% @conversation.errors.full_messages.each do |message| %>
   <div class="alert alert-danger">
-    <%= flash[:error] %>
+    <%= message %>
   </div>
 <% end %>

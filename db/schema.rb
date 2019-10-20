@@ -13,14 +13,10 @@
 ActiveRecord::Schema.define(version: 20161115210308) do
 
   create_table "conversations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "recipient_id"
-    t.integer  "sender_id"
     t.string   "topic"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["recipient_id", "sender_id"], name: "index_conversations_on_recipient_id_and_sender_id", unique: true, using: :btree
-    t.index ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
-    t.index ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

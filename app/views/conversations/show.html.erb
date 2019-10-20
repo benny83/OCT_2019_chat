@@ -1,6 +1,6 @@
 <div class="row col-md-8 col-md-offset-2">
-  <h1>Room: <%= @conversation.topic %></h1>
-    <ul id="conversations-list" data-conversation="<%= @conversation.id %>">
-      <%= render 'conversations/conversation', conversation: @conversation, user: current_user %>
+  <h1><%= conversation.topic %></h1>
+    <ul id="conversations-list" data-conversation="<%= conversation.id %>">
+      <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
     </ul>
 </div>

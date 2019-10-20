@@ -5,9 +5,10 @@
       <div class="chatroom-form">
         <%= form_for @conversation do |f| %>
           <div class="input-group">
-            <span class="input-group-addon">Topic:</span>
-            <%= f.text_field :topic, class: "form-control"%>
+            <span class="input-group-addon">Password (optional):</span>
+            <%= f.text_field :password, class: "form-control" %>
           </div>
+          <%= f.hidden_field :topic, value: "Room ##{Time.now.to_i}" %>
           <%= f.submit 'Create room', class: "btn btn-primary", id: "create-chatroom" %>
         <% end %>
       </div>

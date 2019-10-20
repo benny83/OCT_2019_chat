@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # end
 
   resources :conversations do
+    post :private
     member do
       post :close
     end

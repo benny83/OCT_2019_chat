@@ -1,26 +1,35 @@
+# require 'bcrypt'
+
 class Conversation < ApplicationRecord
+  # include BCrypt
+  has_secure_password
+
+
   has_many :messages, dependent: :destroy
   has_many :users, through: :messages
   validates :topic, presence: true, uniqueness: true, case_sensitive: false
-  # belongs_to :sender, foreign_key: :sender_id, class_name: User
-  # belongs_to :recipient, foreign_key: :recipient_id, class_name: User
 
-  # validates :sender_id, uniqueness: { scope: :recipient_id }
+  # attr_accessor :skip_password_validation
 
-  scope :between, -> (sender_id, recipient_id) do
-    where(sender_id: sender_id, recipient_id: recipient_id).or(
-      where(sender_id: recipient_id, recipient_id: sender_id)
-    )
-  end
+  private
 
-  def self.get(sender_id, recipient_id)
-    conversation = between(sender_id, recipient_id).first
-    return conversation if conversation.present?
+  # def password_required?
+  #   binding.pry
+  #   return false if skip_password_validation
+  #   super
+  # end
 
-    create(sender_id: sender_id, recipient_id: recipient_id)
-  end
+  # validates :password, length: { minimum: 3 }, allow_nil: true
+  # validates :password, presence: true, on: :create
+  # validates :password, length: { minimum: 8 }, allow_blank: true
 
-  # def opposed_user(user)
-  #   user == recipient ? sender : recipient
+  # def password
+  #   binding.pry
+  #   @password ||= Password.new(password_hash)
+  # end
+
+  # def password=(new_password)
+  #   @password = Password.create(new_password)
+  #   self.password_hash = @password
   # end
 end

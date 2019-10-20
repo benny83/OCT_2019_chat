@@ -3,7 +3,21 @@
     <div class="well">
       <ul>
         <% @conversations.each do |room| %>
-          <li><h3><%= link_to room.topic, room %></h3></li>
+          <li>
+            <h3>
+              <% if room.password_digest %>
+                <%= form_tag conversation_private_path(room) do %>
+                  <%= text_field_tag :password %>
+                  <%= submit_tag "#{room.topic} (private)" %>
+                <% end %>
+
+
+                <%#= link_to "#{room.topic} (private)", '#', data: { toggle: 'modal', target:'#myModal' } %>
+              <% else %>
+                <%= link_to room.topic, room %>
+              <% end %>
+            </h3>
+          </li>
         <% end %>
       </ul>
     </div>
