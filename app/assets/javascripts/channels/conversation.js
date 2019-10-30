@@ -1,9 +1,12 @@
-var hardcode = new URL(document.location)
+var currentUrl = new URL(document.location)
 
-App.conversation = App.cable.subscriptions.create({ channel: "ConversationChannel", conversation_id: hardcode.pathname.split('/')[2] }, {
+App.conversation = App.cable.subscriptions.create({ channel: "ConversationChannel", conversation_id: currentUrl.pathname.split('/')[2] }, {
   connected: function() {},
   disconnected: function() {},
   received: function(data) {
+    let $t0 = performance.now();
+    toastr.info(data['notification'])
+
     var conversation = $('#conversations-list').find("[data-conversation-id='" + data['conversation_id'] + "']");
     conversation.find('.messages-list').find('ul').append(data['message']);
 
@@ -11,33 +14,8 @@ App.conversation = App.cable.subscriptions.create({ channel: "ConversationChanne
     var height = messages_list[0].scrollHeight;
     messages_list.scrollTop(height);
 
-
-    // var conversation = $('#conversations-list').find("[data-conversation-id='" + data['conversation_id'] + "']");
-
-    // if (data['window'] !== undefined) {
-    //   var conversation_visible = conversation.is(':visible');
-
-    //   if (conversation_visible) {
-    //     var messages_visible = (conversation).find('.panel-body').is(':visible');
-
-    //     if (!messages_visible) {
-    //       conversation.removeClass('panel-default').addClass('panel-success');
-    //     }
-    //     conversation.find('.messages-list').find('ul').append(data['message']);
-    //   }
-    //   else {
-    //     $('#conversations-list').append(data['window']);
-    //     conversation = $('#conversations-list').find("[data-conversation-id='" + data['conversation_id'] + "']");
-    //     conversation.find('.panel-body').toggle();
-    //   }
-    // }
-    // else {
-    //   conversation.find('ul').append(data['message']);
-    // }
-
-    // var messages_list = conversation.find('.messages-list');
-    // var height = messages_list[0].scrollHeight;
-    // messages_list.scrollTop(height);
+    let $t1 = performance.now();
+    toastr.info(`MessageBroadcastWorker JID-${data['jid']} INFO: done`)
   },
   speak: function(message) {
     return this.perform('speak', {

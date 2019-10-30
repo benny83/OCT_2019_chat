@@ -1,11 +1,8 @@
 <ul class="nav navbar-nav">
   <% if user_signed_in? %>
-    <li>
-      <%= link_to "New Room", new_conversation_path %>
-    </li>
-    <li>
-      <%= link_to "Rooms", conversations_path %>
-    </li> 
+    <li><%= link_to "New Room", new_conversation_path %></li>
+    <li><%= link_to "Rooms", conversations_path %></li>
+    <li><%= link_to "Logs", logs_path %></li>
   <% end %>
 </ul>
 

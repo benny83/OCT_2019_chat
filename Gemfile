@@ -10,6 +10,9 @@ gem 'redis', '~> 3.3.5'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq', '~> 5.2'
 gem 'uglifier', '>= 1.3.0'
+gem 'sidekiq-status'
+gem 'toastr-rails'
+gem 'pry-byebug'
 
 group :development, :test do
   gem 'byebug', platform: :mri

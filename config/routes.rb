@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     post :private
   end
 
+  get 'logs', to: 'home#logs'
   root 'home#index'
 end
